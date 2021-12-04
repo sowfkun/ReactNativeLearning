@@ -3,9 +3,11 @@ import { View, Image, Text, StyleSheet } from 'react-native';
 
 import Img from '../assets/salad.png';
 export default function CategoryListItems(props) {
+  const { category } = props;
+  console.log(category);
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Category List Items</Text>
+      <Text style={styles.title}>{category.cateName}</Text>
       <Image style={styles.image} source={Img} />
     </View>
   );
