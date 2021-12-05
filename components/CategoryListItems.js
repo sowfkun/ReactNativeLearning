@@ -1,15 +1,16 @@
 import React from 'react';
-import { View, Image, Text, StyleSheet } from 'react-native';
+import { View, Image, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 import Img from '../assets/salad.png';
 export default function CategoryListItems(props) {
-  const { category } = props;
-  console.log(category);
+  const { category, onPress } = props;
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>{category.cateName}</Text>
-      <Image style={styles.image} source={Img} />
-    </View>
+    <TouchableOpacity activeOpacity={0.8} onPress={onPress}>
+      <View style={styles.container}>
+        <Text style={styles.title}>{category.cateName}</Text>
+        <Image style={styles.image} source={Img} />
+      </View>
+    </TouchableOpacity>
   );
 }
 

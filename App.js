@@ -1,43 +1,30 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, ScrollView, FlatList } from 'react-native';
-import CategoryListItems from './components/CategoryListItems';
+import { StyleSheet } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      categories: [
-        { id: 1, cateName: 'Noodle' },
-        { id: 2, cateName: 'Rice' },
-        { id: 3, cateName: 'Meat' },
-      ],
-    };
-  }
-  render() {
-    const { categories } = this.state;
-    console.log(categories);
-    return (
-      // <ScrollView>
-      //   {categories.map((category) => (
-      //     <CategoryListItems category={category} />
-      //   ))}
-      // </ScrollView>
+import Categories from './screens/Categories';
+import Category from './screens/Category';
 
-      <FlatList
-        data={categories}
-        renderItem={({ item }) => <CategoryListItems category={item} />}
-        keyExtractor={(item) => item.id}
-      />
-    );
-  }
+const Stack = createNativeStackNavigator();
+
+export default function App({ navigation }) {
+  return (
+    <NavigationContainer styles={styles.container}>
+      <Stack.Navigator>
+        <Stack.Screen
+          name='Categories'
+          component={Categories}
+          navigation={navigation}
+        />
+        <Stack.Screen name='Category' component={Category} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    alignItems: 'stretch',
-    backgroundColor: '#fff',
     justifyContent: 'center',
   },
 });
