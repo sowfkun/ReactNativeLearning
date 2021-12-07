@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, FlatList, Dimensions } from 'react-native';
 import axios from 'axios';
-
+import React, { useEffect, useState } from 'react';
+import { Dimensions, FlatList, StyleSheet, View } from 'react-native';
 import ProductItem from '../components/ProductItem';
 
 const { width } = Dimensions.get('window');
@@ -12,19 +11,18 @@ const styleOptions = {
 
 export default function Categories({ route, navigation }) {
   const { category } = route.params;
-  navigation.setOptions({
-    title: category.cateName,
-    headerStyle: {
-      backgroundColor: '#f4511e',
-    },
-    headerTintColor: '#fff',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-    },
-  });
-
   const [products, setProducts] = useState([]);
   useEffect(() => {
+    navigation.setOptions({
+      title: category.cateName,
+      headerStyle: {
+        backgroundColor: '#f4511e',
+      },
+      headerTintColor: '#fff',
+      headerTitleStyle: {
+        fontWeight: 'bold',
+      },
+    });
     async function fetchData() {
       try {
         const result = await axios.get(
